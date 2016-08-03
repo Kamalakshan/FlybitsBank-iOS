@@ -66,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Tutorial Section 7.5 (Push Notifications)
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        print("application:didReceiveRemoteNotification:")
         let handled = PushManager.sharedManager.notificationReceived(userInfo) { (result) in
             completionHandler(result)
         }

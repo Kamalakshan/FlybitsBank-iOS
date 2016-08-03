@@ -9,6 +9,11 @@
 import Foundation
 import FlybitsSDK
 
+protocol OfferDisplayDelegate {
+    func showFullScreen(viewController: PopupController)
+    func showBanner(view: UIView)
+}
+
 class OfferManager {
     // MARK: - Constants
     struct Constants {
@@ -25,9 +30,11 @@ class OfferManager {
     // MARK: - Properties
     static let sharedManager = OfferManager()
 
+    var delegate: OfferDisplayDelegate?
     private(set) var currentOffer: LayoutConfiguration?
     private(set) var offerQueue = [LayoutConfiguration]()
 
+    private var popupController: PopupController?
     private var state: State = .Blocked {
         didSet {
             stateUpdated()
@@ -50,8 +57,8 @@ class OfferManager {
             PushMessage.NotificationType(.MomentInstance, action: .ZoneExited),
 
             // MQTT
-            PushMessage.NotificationType(.Zone, action: .Entered),
-            PushMessage.NotificationType(.Zone, action: .Exited)
+            // PushMessage.NotificationType(.Zone, action: .Entered),
+            // PushMessage.NotificationType(.Zone, action: .Exited)
         ]
 
         for topic in topics {
@@ -61,12 +68,20 @@ class OfferManager {
     }
 
     // MARK: - Functions
+    func enableOffers() {
+        state = .Available
+    }
+
+    func disableOffers() {
+        state = .Blocked
+    }
+
     func handleOfferNotification(userInfo: [NSObject : AnyObject]?) {
         guard let userInfo = userInfo else {
             return
         }
+        // TODO: (TL) Handle MQTT vs. APNS (body contains ID vs. Zone ID)
         if let message = userInfo[PushManager.Constants.PushMessageContent] as? PushMessage, pushedZoneID = message.body?[Constants.ZoneID] as? String {
-            print("Message: \(message)")
             APIManager.fetchConfigForPushedZone(pushedZoneID) { (configuration, error) in
                 guard let configuration = configuration where error == nil else {
                     return // Can't show anything
@@ -81,17 +96,27 @@ class OfferManager {
         offerQueue.append(configuration)
 
         // If we're not currently showing an offer and we can be, show one
-        guard currentOffer == nil && state == .Available else {
+        guard state == .Available else {
             return // State changes will handle the rest
         }
-        state = .Available
+        state = .Available // Force refresh
     }
 
     func stateUpdated() {
         switch state {
         case .Available:
             // TODO: (TL) Show banner for next available offer
-            break
+            guard offerQueue.count > 0 else {
+                return // Nothing to do
+            }
+            let offer = offerQueue.removeAtIndex(0)
+
+            // Configure popup
+            if popupController == nil {
+                popupController = PopupController()
+            }
+            popupController?.layout(offer)
+            delegate?.showFullScreen(popupController!)
         case .Banner:
             // TODO: (TL) Banners could be swipable left/right if multiple offers are received
             break

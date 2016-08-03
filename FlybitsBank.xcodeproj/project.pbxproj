@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4901C73E1D52619F002301E7 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901C73D1D52619F002301E7 /* PopupController.swift */; };
 		491B4E111D3FD0AF007CA7BF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E101D3FD0AF007CA7BF /* Utilities.swift */; };
 		491B4E141D3FECC1007CA7BF /* MenuSlideInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E131D3FECC1007CA7BF /* MenuSlideInSegue.swift */; };
 		491B4E161D3FF121007CA7BF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E151D3FF121007CA7BF /* MenuViewController.swift */; };
@@ -18,7 +19,6 @@
 		4941D2C41D401901006D6630 /* MenuTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941D2C31D401901006D6630 /* MenuTableHeaderView.swift */; };
 		49592C5A1D48EFF700F696E1 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49592C591D48EFF700F696E1 /* LoadingView.xib */; };
 		49592C5C1D48F0D100F696E1 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49592C5B1D48F0D100F696E1 /* LoadingView.swift */; };
-		49592C601D49289100F696E1 /* ScreenTakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49592C5F1D49289100F696E1 /* ScreenTakeoverViewController.swift */; };
 		49592C621D492A0300F696E1 /* LayoutConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49592C611D492A0300F696E1 /* LayoutConfiguration.swift */; };
 		49592C671D4A5CBB00F696E1 /* AOBRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49592C661D4A5CBB00F696E1 /* AOBRequest.swift */; };
 		49592C741D4A6B1400F696E1 /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49592C701D4A6AF800F696E1 /* FlybitsSDK.framework */; };
@@ -74,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4901C73D1D52619F002301E7 /* PopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopupController.swift; path = ViewControllers/PopupController.swift; sourceTree = "<group>"; };
 		491B4E101D3FD0AF007CA7BF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Utilities/Utilities.swift; sourceTree = "<group>"; };
 		491B4E131D3FECC1007CA7BF /* MenuSlideInSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuSlideInSegue.swift; path = Segues/MenuSlideInSegue.swift; sourceTree = "<group>"; };
 		491B4E151D3FF121007CA7BF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		4941D2C31D401901006D6630 /* MenuTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableHeaderView.swift; path = TableViewCells/MenuTableHeaderView.swift; sourceTree = "<group>"; };
 		49592C591D48EFF700F696E1 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = Views/LoadingView.xib; sourceTree = "<group>"; };
 		49592C5B1D48F0D100F696E1 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Views/LoadingView.swift; sourceTree = "<group>"; };
-		49592C5F1D49289100F696E1 /* ScreenTakeoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenTakeoverViewController.swift; path = ViewControllers/ScreenTakeoverViewController.swift; sourceTree = "<group>"; };
 		49592C611D492A0300F696E1 /* LayoutConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LayoutConfiguration.swift; path = Models/LayoutConfiguration.swift; sourceTree = "<group>"; };
 		49592C661D4A5CBB00F696E1 /* AOBRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AOBRequest.swift; path = APIRequests/AOBRequest.swift; sourceTree = "<group>"; };
 		49592C701D4A6AF800F696E1 /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 				49E9EC4C1D3E980200E373B8 /* LoginViewController.swift */,
 				49E9EC4A1D3E97F300E373B8 /* MainViewController.swift */,
 				491B4E151D3FF121007CA7BF /* MenuViewController.swift */,
-				49592C5F1D49289100F696E1 /* ScreenTakeoverViewController.swift */,
+				4901C73D1D52619F002301E7 /* PopupController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -409,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4901C73E1D52619F002301E7 /* PopupController.swift in Sources */,
 				49E9EC4D1D3E980200E373B8 /* LoginViewController.swift in Sources */,
 				49E9EC4B1D3E97F300E373B8 /* MainViewController.swift in Sources */,
 				49E9EC501D3E9D5300E373B8 /* BankTemplateCollectionViewLayout.swift in Sources */,
@@ -419,7 +420,6 @@
 				49B28A251D5131CD00F353A7 /* Errors.swift in Sources */,
 				49592C671D4A5CBB00F696E1 /* AOBRequest.swift in Sources */,
 				4941D2C41D401901006D6630 /* MenuTableHeaderView.swift in Sources */,
-				49592C601D49289100F696E1 /* ScreenTakeoverViewController.swift in Sources */,
 				49B28A181D510BD800F353A7 /* DynamicView.swift in Sources */,
 				491B4E141D3FECC1007CA7BF /* MenuSlideInSegue.swift in Sources */,
 				497A7E541D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift in Sources */,

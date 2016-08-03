@@ -58,6 +58,7 @@ class MainViewController: UICollectionViewController {
         registerForChanges()
 
         DataCache.sharedCache.refreshCurrentZone()
+        OfferManager.sharedManager.delegate = self
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -75,9 +76,16 @@ class MainViewController: UICollectionViewController {
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        OfferManager.sharedManager.enableOffers()
+    }
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
+        OfferManager.sharedManager.disableOffers()
         for token in tokens {
             NSNotificationCenter.defaultCenter().removeObserver(token)
         }
@@ -239,5 +247,15 @@ extension MainViewController: MenuDelegate {
         self.dismissViewControllerAnimated(false) { // Dismiss the menu & main VC in one animation
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+}
+
+extension MainViewController: OfferDisplayDelegate {
+    func showFullScreen(viewController: PopupController) {
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+
+    func showBanner(view: UIView) {
+        // TODO: (TL) ...
     }
 }

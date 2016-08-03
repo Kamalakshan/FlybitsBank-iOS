@@ -49,7 +49,14 @@ class APIManager {
                     completion(success: valid, error: nil)
                 } else {
                     if let username = username, password = password {
-                        loginRequest(username, password: password, completion: completion)
+                        loginRequest(username, password: password) { (success, error) in
+                            guard success && error == nil else {
+                                completion(success: success, error: error)
+                                return
+                            }
+                            self.locationProvider = ContextManager.sharedManager.registerSDKContextProvider(.CoreLocation, priority: .Any, pollFrequency: 60, uploadFrequency: 5 * 60) as? CoreLocationDataProvider
+                            ContextManager.sharedManager.startDataPolling()
+                        }
                     } else {
                         completion(success: valid, error: error)
                     }
