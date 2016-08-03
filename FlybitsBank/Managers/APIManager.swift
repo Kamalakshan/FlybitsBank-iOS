@@ -60,7 +60,14 @@ class APIManager {
                 completion(success: false, error: nil)
                 return
             }
-            loginRequest(username, password: password, completion: completion)
+            loginRequest(username, password: password) { (success, error) in
+                guard success && error == nil else {
+                    completion(success: success, error: error)
+                    return
+                }
+                self.locationProvider = ContextManager.sharedManager.registerSDKContextProvider(.CoreLocation, priority: .Any, pollFrequency: 60, uploadFrequency: 5 * 60) as? CoreLocationDataProvider
+                ContextManager.sharedManager.startDataPolling()
+            }
         }
 
     }
@@ -106,8 +113,7 @@ class APIManager {
             query.zoneIDs = [zoneID]
             MomentRequest.Query(query) { (moments, pagination, error) in
                 guard let configMoment = moments.first else {
-                    // TODO: (TL) Error
-                    completion(configuration: nil, error: nil)
+                    completion(configuration: nil, error: CacheError.ConfigMissing.error)
                     return
                 }
                 MomentRequest.AutoValidate(moment: configMoment) { (validated, error) in
@@ -125,8 +131,7 @@ class APIManager {
             query.searchValue = DataCache.Constants.ConfigurationTagName
             TagsRequest.Query(query) { (tags, pagination, error) in
                 guard let configTag = tags?.first else {
-                    // TODO: (TL) New error for can't find config tag
-                    completion(configuration: nil, error: error)
+                    completion(configuration: nil, error: CacheError.ConfigTagMissing.error)
                     return // Nothing we can do
                 }
                 finalCompletion(configTagID: configTag.id, zoneID: zoneID)

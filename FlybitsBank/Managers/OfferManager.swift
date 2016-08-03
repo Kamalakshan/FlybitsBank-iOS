@@ -23,6 +23,8 @@ class OfferManager {
     }
 
     // MARK: - Properties
+    static let sharedManager = OfferManager()
+
     private(set) var currentOffer: LayoutConfiguration?
     private(set) var offerQueue = [LayoutConfiguration]()
 
@@ -78,9 +80,11 @@ class OfferManager {
     func receivedNewOffer(configuration: LayoutConfiguration) {
         offerQueue.append(configuration)
 
-        guard currentOffer == nil && offerQueue.count == 1 else {
+        // If we're not currently showing an offer and we can be, show one
+        guard currentOffer == nil && state == .Available else {
             return // State changes will handle the rest
         }
+        state = .Available
     }
 
     func stateUpdated() {

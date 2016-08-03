@@ -9,3 +9,6 @@
 import Foundation
 
 // protocol to update UI from layout config after being initialized from a .xib
+protocol ComponentConfigurable {
+    func updateFromProperties(properties: [Component.Property : String], mappings: [Component.Property : Int])
+}

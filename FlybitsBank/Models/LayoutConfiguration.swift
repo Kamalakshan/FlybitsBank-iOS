@@ -20,10 +20,71 @@ struct Component {
         case CallToAction = "cta"
         case Promo1 = "promo1"
         case Promo2 = "promo2"
+
+        var nibName: String {
+            switch self {
+            case .Title:
+                return "ComponentTitleView"
+            case Description:
+                return "ComponentDescriptionView"
+            case Person:
+                return "ComponentPersonView"
+            case Selection:
+                return "ComponentSelectionView"
+            case CallToAction:
+                return "ComponentCTAView"
+            case Promo1:
+                return "ComponentPromo1View"
+            case Promo2:
+                return "ComponentPromo2View"
+            }
+        }
+
+        // In theory these could come from outside of the App (i.e. from a Moment)
+        var mappings: [Property : Int] {
+            switch self {
+            case Title:
+                return [
+                    .Text : 1
+                ]
+            case Description:
+                return [
+                    .Text : 1
+                ]
+            case Person:
+                return [
+                    .Icon : 1,
+                    .FirstName : 2,
+                    .LastName : 3
+                ]
+            case Selection:
+                return [
+                    : // TODO: (TL) How do we do this one?
+                ]
+            case CallToAction:
+                return [
+                    .Icon : 1,
+                    .Text : 2
+                ]
+            case Promo1:
+                return [
+                    .Icon : 1,
+                    .Description1 : 2,
+                    .Description2 : 3
+                ]
+            case Promo2:
+                return [
+                    .Icon : 1,
+                    .Description : 2,
+                    .Coupon : 3
+                ]
+            }
+        }
     }
 
-    enum ComponentProperty: String {
-        case Title = "title"
+    // TODO: (TL) Revisit these names (description shouldn't have 3 versions, first name and last name need to be fetched not passed along
+    enum Property: String {
+        case Text = "title"
         case Description = "description"
         case Description1 = "description1"
         case Description2 = "description2"
@@ -34,15 +95,26 @@ struct Component {
         case Coupon = "coupon"
         case Selection = "selection"
         case Order = "order"
+
+        var componentMapper: ComponentMapper {
+            switch self {
+            case Text, Description, Description1, Description2, FirstName, LastName, Identifier, Coupon, Selection:
+                return TextComponentMapper()
+            case Icon:
+                return ImageComponentMapper()
+            case Order:
+                return EmptyComponentMapper()
+            }
+        }
     }
 
     // MARK: - Properties
     var kind: Kind
-    var properties: [ComponentProperty : String]
+    var properties: [Property : String]
     var view: UIView
 
     // MARK: - Lifecycle Function
-    init?(kind: Kind, properties: [ComponentProperty : String]) {
+    init?(kind: Kind, properties: [Property : String]) {
         guard let view = NSBundle.mainBundle().loadNibNamed(kind.rawValue, owner: nil, options: nil).first as? UIView else {
             return nil
         }
@@ -60,17 +132,28 @@ struct Component {
         self.properties = [:]
 
         for (key, value) in content {
-            guard let property = ComponentProperty(rawValue: key) else {
+            guard let property = Property(rawValue: key) else {
                 print("Unrecognized property: \(key)")
                 continue
             }
             properties[property] = value
         }
-        view = UIView() // TODO: (TL)
+
+        guard let view = Utilities.viewForKind(componentKind, properties: properties, mappings: componentKind.mappings) else {
+            print("Unable to construct view for kind: \(kind)")
+            return nil
+        }
+        self.view = view
     }
 }
 
 struct LayoutConfiguration: ResponseObjectSerializable {
+    // MARK: - Constants
+    struct Constants {
+        static let LocalizedKeyValuePairs = "localizedKeyValuePairs"
+        static let Root = "root"
+    }
+
     // MARK: - Properties
     let backgroundImage: UIImage
     let components: [Component]
@@ -84,9 +167,9 @@ struct LayoutConfiguration: ResponseObjectSerializable {
     init?(response: NSHTTPURLResponse, representation: AnyObject) {
         // Base structure = "localizedKeyValuePairs" -> "en" -> "root" -> { ... }
         guard let baseObject = representation as? [String : AnyObject],
-            localizationRoot = baseObject["localizedKeyValuePairs"] as? [String : AnyObject],
-            localeRoot = localizationRoot["en"] as? [String : AnyObject],
-            components = localeRoot["root"] as? [String : AnyObject] else {
+            localizationRoot = baseObject[Constants.LocalizedKeyValuePairs] as? [String : AnyObject],
+            localeRoot = localizationRoot[NSLocale.currentLocale().iso639String] as? [String : AnyObject],
+            components = localeRoot[Constants.Root] as? [String : AnyObject] else {
             return nil // Invalid structure
         }
 
@@ -101,7 +184,7 @@ struct LayoutConfiguration: ResponseObjectSerializable {
 
         // TODO: (TL) ...
         backgroundImage = UIImage()
-        self.components = componentList
+        self.components = componentList.sort({ $0.0.properties[.Order] < $0.1.properties[.Order] })
     }
 }
 

@@ -63,7 +63,7 @@ class Utilities {
     }
 
     // MARK: - Loading Functions
-    static func loadAndCrossfadeImage(imageView: UIImageView, image: Image, duration: NSTimeInterval) {
+    static func loadAndCrossfadeImage(imageView: UIImageView, image: Image, duration: NSTimeInterval = 0.2) {
         if let image = image.loadedImage() {
             transitionImage(imageView, image: image, duration: duration)
         } else {
@@ -76,9 +76,31 @@ class Utilities {
         }
     }
 
-    static func transitionImage(imageView: UIImageView, image: UIImage, duration: NSTimeInterval, completion: ((finished: Bool) -> Void)? = nil) {
+    static func loadAndCrossfadeImage(imageView: UIImageView, imageURL: NSURL, duration: NSTimeInterval = 0.2) {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, _, error) in
+            guard let imageData = data, image = UIImage(data: imageData) where error == nil else {
+                return
+            }
+            Utilities.transitionImage(imageView, image: image)
+        }
+        task.resume() // TODO: (TL) Cancel option?
+    }
+
+    static func transitionImage(imageView: UIImageView, image: UIImage, duration: NSTimeInterval = 0.2, completion: ((finished: Bool) -> Void)? = nil) {
         UIView.transitionWithView(imageView, duration: duration, options: .TransitionCrossDissolve, animations: {
             imageView.image = image
         }, completion: completion)
+    }
+
+    // MARK: - Component Functions
+    static func viewForKind(kind: Component.Kind, properties: [Component.Property : String], mappings: [Component.Property : Int]) -> UIView? {
+        guard let view = NSBundle.mainBundle().loadNibNamed(kind.nibName, owner: nil, options: nil).first as? UIView else {
+            return nil
+        }
+        if let configurableView = view as? ComponentConfigurable {
+            configurableView.updateFromProperties(properties, mappings: mappings)
+            return configurableView as? UIView
+        }
+        return view
     }
 }

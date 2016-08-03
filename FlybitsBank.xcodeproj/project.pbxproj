@@ -34,6 +34,18 @@
 		49B111D21D479ADE00A2AB08 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B111D11D479ADE00A2AB08 /* Branch.swift */; };
 		49B289F81D50E6E400F353A7 /* OfferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B289F71D50E6E400F353A7 /* OfferManager.swift */; };
 		49B289FA1D50EAB600F353A7 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B289F91D50EAB600F353A7 /* Protocols.swift */; };
+		49B289FC1D5108E100F353A7 /* ComponentTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B289FB1D5108E100F353A7 /* ComponentTitleView.xib */; };
+		49B28A001D51090200F353A7 /* ComponentPersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B289FF1D51090200F353A7 /* ComponentPersonView.xib */; };
+		49B28A021D51091600F353A7 /* ComponentSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B28A011D51091600F353A7 /* ComponentSelectionView.xib */; };
+		49B28A041D51092200F353A7 /* ComponentCTAView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B28A031D51092200F353A7 /* ComponentCTAView.xib */; };
+		49B28A061D51092F00F353A7 /* ComponentPromo1View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B28A051D51092F00F353A7 /* ComponentPromo1View.xib */; };
+		49B28A081D51093B00F353A7 /* ComponentPromo2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B28A071D51093B00F353A7 /* ComponentPromo2View.xib */; };
+		49B28A181D510BD800F353A7 /* DynamicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B28A171D510BD800F353A7 /* DynamicView.swift */; };
+		49B28A1A1D510FAA00F353A7 /* ComponentDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B28A191D510FAA00F353A7 /* ComponentDescriptionView.xib */; };
+		49B28A1D1D5119CC00F353A7 /* TextComponentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B28A1C1D5119CC00F353A7 /* TextComponentMapper.swift */; };
+		49B28A1F1D511ADE00F353A7 /* ImageComponentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B28A1E1D511ADE00F353A7 /* ImageComponentMapper.swift */; };
+		49B28A231D512FE800F353A7 /* EmptyComponentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B28A221D512FE800F353A7 /* EmptyComponentMapper.swift */; };
+		49B28A251D5131CD00F353A7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B28A241D5131CD00F353A7 /* Errors.swift */; };
 		49E9EC2E1D3E787500E373B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9EC2D1D3E787500E373B8 /* AppDelegate.swift */; };
 		49E9EC331D3E787500E373B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49E9EC311D3E787500E373B8 /* Main.storyboard */; };
 		49E9EC351D3E787500E373B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E9EC341D3E787500E373B8 /* Assets.xcassets */; };
@@ -89,6 +101,18 @@
 		49B111D11D479ADE00A2AB08 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Branch.swift; path = Models/Branch.swift; sourceTree = "<group>"; };
 		49B289F71D50E6E400F353A7 /* OfferManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OfferManager.swift; path = Managers/OfferManager.swift; sourceTree = "<group>"; };
 		49B289F91D50EAB600F353A7 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Protocols.swift; path = Utilities/Protocols.swift; sourceTree = "<group>"; };
+		49B289FB1D5108E100F353A7 /* ComponentTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentTitleView.xib; path = Views/ComponentTitleView.xib; sourceTree = "<group>"; };
+		49B289FF1D51090200F353A7 /* ComponentPersonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentPersonView.xib; path = Views/ComponentPersonView.xib; sourceTree = "<group>"; };
+		49B28A011D51091600F353A7 /* ComponentSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentSelectionView.xib; path = Views/ComponentSelectionView.xib; sourceTree = "<group>"; };
+		49B28A031D51092200F353A7 /* ComponentCTAView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentCTAView.xib; path = Views/ComponentCTAView.xib; sourceTree = "<group>"; };
+		49B28A051D51092F00F353A7 /* ComponentPromo1View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentPromo1View.xib; path = Views/ComponentPromo1View.xib; sourceTree = "<group>"; };
+		49B28A071D51093B00F353A7 /* ComponentPromo2View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentPromo2View.xib; path = Views/ComponentPromo2View.xib; sourceTree = "<group>"; };
+		49B28A171D510BD800F353A7 /* DynamicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicView.swift; path = Views/DynamicView.swift; sourceTree = "<group>"; };
+		49B28A191D510FAA00F353A7 /* ComponentDescriptionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComponentDescriptionView.xib; path = Views/ComponentDescriptionView.xib; sourceTree = "<group>"; };
+		49B28A1C1D5119CC00F353A7 /* TextComponentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextComponentMapper.swift; path = Mappers/TextComponentMapper.swift; sourceTree = "<group>"; };
+		49B28A1E1D511ADE00F353A7 /* ImageComponentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageComponentMapper.swift; path = Mappers/ImageComponentMapper.swift; sourceTree = "<group>"; };
+		49B28A221D512FE800F353A7 /* EmptyComponentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyComponentMapper.swift; path = Mappers/EmptyComponentMapper.swift; sourceTree = "<group>"; };
+		49B28A241D5131CD00F353A7 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Utilities/Errors.swift; sourceTree = "<group>"; };
 		49E9EC2A1D3E787500E373B8 /* FlybitsBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlybitsBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E9EC2D1D3E787500E373B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49E9EC321D3E787500E373B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +146,7 @@
 				491B4E101D3FD0AF007CA7BF /* Utilities.swift */,
 				4941D2C01D401522006D6630 /* Extensions.swift */,
 				49B289F91D50EAB600F353A7 /* Protocols.swift */,
+				49B28A241D5131CD00F353A7 /* Errors.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -142,6 +167,14 @@
 			children = (
 				49592C591D48EFF700F696E1 /* LoadingView.xib */,
 				49592C5B1D48F0D100F696E1 /* LoadingView.swift */,
+				49B289FB1D5108E100F353A7 /* ComponentTitleView.xib */,
+				49B28A191D510FAA00F353A7 /* ComponentDescriptionView.xib */,
+				49B289FF1D51090200F353A7 /* ComponentPersonView.xib */,
+				49B28A011D51091600F353A7 /* ComponentSelectionView.xib */,
+				49B28A031D51092200F353A7 /* ComponentCTAView.xib */,
+				49B28A051D51092F00F353A7 /* ComponentPromo1View.xib */,
+				49B28A071D51093B00F353A7 /* ComponentPromo2View.xib */,
+				49B28A171D510BD800F353A7 /* DynamicView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -194,6 +227,16 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		49B28A1B1D5119AC00F353A7 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				49B28A1C1D5119CC00F353A7 /* TextComponentMapper.swift */,
+				49B28A1E1D511ADE00F353A7 /* ImageComponentMapper.swift */,
+				49B28A221D512FE800F353A7 /* EmptyComponentMapper.swift */,
+			);
+			name = Mappers;
+			sourceTree = "<group>";
+		};
 		49E9EC211D3E787500E373B8 = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +266,7 @@
 				49E9EC491D3E97D000E373B8 /* ViewControllers */,
 				49592C581D48EFD900F696E1 /* Views */,
 				495FB11C1D4107B200BE42E1 /* Models */,
+				49B28A1B1D5119AC00F353A7 /* Mappers */,
 				49592C631D4A5C2F00F696E1 /* APIRequests */,
 				495FB11D1D41139C00BE42E1 /* Managers */,
 				491B4E0F1D3FD09B007CA7BF /* Utilities */,
@@ -344,10 +388,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B28A061D51092F00F353A7 /* ComponentPromo1View.xib in Resources */,
 				49E9EC381D3E787500E373B8 /* LaunchScreen.storyboard in Resources */,
 				49592C5A1D48EFF700F696E1 /* LoadingView.xib in Resources */,
+				49B28A1A1D510FAA00F353A7 /* ComponentDescriptionView.xib in Resources */,
+				49B289FC1D5108E100F353A7 /* ComponentTitleView.xib in Resources */,
+				49B28A081D51093B00F353A7 /* ComponentPromo2View.xib in Resources */,
 				49E9EC351D3E787500E373B8 /* Assets.xcassets in Resources */,
 				49E9EC331D3E787500E373B8 /* Main.storyboard in Resources */,
+				49B28A001D51090200F353A7 /* ComponentPersonView.xib in Resources */,
+				49B28A041D51092200F353A7 /* ComponentCTAView.xib in Resources */,
+				49B28A021D51091600F353A7 /* ComponentSelectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,11 +416,14 @@
 				495FB11F1D4113F100BE42E1 /* DataCache.swift in Sources */,
 				495FB11B1D4107AD00BE42E1 /* User.swift in Sources */,
 				491B4E161D3FF121007CA7BF /* MenuViewController.swift in Sources */,
+				49B28A251D5131CD00F353A7 /* Errors.swift in Sources */,
 				49592C671D4A5CBB00F696E1 /* AOBRequest.swift in Sources */,
 				4941D2C41D401901006D6630 /* MenuTableHeaderView.swift in Sources */,
 				49592C601D49289100F696E1 /* ScreenTakeoverViewController.swift in Sources */,
+				49B28A181D510BD800F353A7 /* DynamicView.swift in Sources */,
 				491B4E141D3FECC1007CA7BF /* MenuSlideInSegue.swift in Sources */,
 				497A7E541D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift in Sources */,
+				49B28A1D1D5119CC00F353A7 /* TextComponentMapper.swift in Sources */,
 				497A7E561D3FBA8F00F188E2 /* AccountCollectionViewCell.swift in Sources */,
 				49B289F81D50E6E400F353A7 /* OfferManager.swift in Sources */,
 				491B4E111D3FD0AF007CA7BF /* Utilities.swift in Sources */,
@@ -378,11 +432,13 @@
 				49B111D21D479ADE00A2AB08 /* Branch.swift in Sources */,
 				4989D18F1D4012AA0005F373 /* MenuTableViewCell.swift in Sources */,
 				49285A3E1D4243C200EED45B /* SlideRightSegue.swift in Sources */,
+				49B28A1F1D511ADE00F353A7 /* ImageComponentMapper.swift in Sources */,
 				49306F931D47D0A2006F62DB /* Feature.swift in Sources */,
 				49238EA41D40012700B60EC4 /* MenuSlideOutSegue.swift in Sources */,
 				497A7E581D3FBAA200F188E2 /* BannerCollectionViewCell.swift in Sources */,
 				49B289FA1D50EAB600F353A7 /* Protocols.swift in Sources */,
 				49E9EC2E1D3E787500E373B8 /* AppDelegate.swift in Sources */,
+				49B28A231D512FE800F353A7 /* EmptyComponentMapper.swift in Sources */,
 				49285A3C1D42439300EED45B /* SlideLeftSegue.swift in Sources */,
 				4941D2C11D401522006D6630 /* Extensions.swift in Sources */,
 				49592C5C1D48F0D100F696E1 /* LoadingView.swift in Sources */,
@@ -507,7 +563,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = FlybitsBank/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.bank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,7 +582,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = FlybitsBank/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.bank;
 				PRODUCT_NAME = "$(TARGET_NAME)";

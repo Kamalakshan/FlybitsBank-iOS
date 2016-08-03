@@ -87,7 +87,7 @@ class DataCache {
         let token = NSNotificationCenter.defaultCenter().addObserverForName(topic, object: nil, queue: notificationQueue) { (notification) in
             guard let userInfo = notification.userInfo else {
                 let userInfo: [String : AnyObject] = [
-                    UserInfoKeys.Error : NSError(domain: "DOMAIN", code: 0, userInfo: nil)
+                    UserInfoKeys.Error : AppConfigError.PushError.error
                 ]
                 NSNotificationCenter.defaultCenter().postNotificationName(Notifications.AppConfigurationUpdateError, object: nil, userInfo: userInfo)
                 return
@@ -108,7 +108,7 @@ class DataCache {
         let token = NSNotificationCenter.defaultCenter().addObserverForName(topic, object: nil, queue: notificationQueue) { (notification) in
             guard let userInfo = notification.userInfo else {
                 let userInfo: [String : AnyObject] = [
-                    UserInfoKeys.Error : NSError(domain: "DOMAIN", code: 1, userInfo: nil)
+                    UserInfoKeys.Error : CacheError.PushError.error
                 ]
                 NSNotificationCenter.defaultCenter().postNotificationName(Notifications.CacheUpdateError, object: nil, userInfo: userInfo)
                 return
@@ -194,7 +194,7 @@ class DataCache {
     private func refreshAppConfigData() {
         guard let configurationZoneID = configTag?.zoneID.first else {
             let userInfo: [String : AnyObject] = [
-                UserInfoKeys.Error : NSError(domain: "DOMAIN", code: 0, userInfo: nil)
+                UserInfoKeys.Error : AppConfigError.NoConfigTag.error
             ]
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.AppConfigurationUpdateError, object: nil, userInfo: userInfo)
             return

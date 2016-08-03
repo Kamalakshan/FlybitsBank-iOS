@@ -116,6 +116,7 @@ class MainViewController: UICollectionViewController {
 
         DataCache.sharedCache.registerForAppConfigurationChanges()
         DataCache.sharedCache.registerForContentChanges()
+        OfferManager.sharedManager.registerForOffers()
     }
 
     func appConfigurationUpdated() {
@@ -130,7 +131,6 @@ class MainViewController: UICollectionViewController {
     }
 
     func appContentUpdated() {
-        // TODO: (TL) verify that content has been updated?
         collectionView?.reloadAllSections()
     }
 

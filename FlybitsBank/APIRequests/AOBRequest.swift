@@ -53,6 +53,7 @@ enum AOBRequest: Requestable {
         switch self {
         case .Metadata(_, let completion):
             return FlybitsRequest(request: urlRequest).responseObject { (_, _, configuration: LayoutConfiguration?, error) in
+                // TODO: (TL) Fields that require additional APIs i.e. PERSON, SELECTION
                 completion(configuration: configuration, error: error)
             }
         }

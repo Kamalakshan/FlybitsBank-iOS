@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DynamicView" customModule="FlybitsBank" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fmV-yR-UDA">
+                    <rect key="frame" x="20" y="225" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="fmV-yR-UDA" secondAttribute="height" multiplier="1:1" id="xOt-IL-dEb"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaY-mH-Gub" userLabel="Name Label">
+                    <rect key="frame" x="190" y="225" width="390" height="65"/>
+                    <color key="backgroundColor" red="0.2436818372" green="0.64723154360000001" blue="0.95393770970000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VT7-ad-Rtf" userLabel="Occupation Label">
+                    <rect key="frame" x="190" y="310" width="390" height="65"/>
+                    <color key="backgroundColor" red="0.2436818372" green="0.64723154360000001" blue="0.95393770970000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fmV-yR-UDA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.25" id="2A6-Gm-LHw"/>
+                <constraint firstItem="fmV-yR-UDA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2ja-ms-Ssn"/>
+                <constraint firstItem="VT7-ad-Rtf" firstAttribute="leading" secondItem="fmV-yR-UDA" secondAttribute="trailing" constant="20" id="F8x-Wt-gLm"/>
+                <constraint firstAttribute="trailing" secondItem="VT7-ad-Rtf" secondAttribute="trailing" constant="20" id="Gny-Bt-kBl"/>
+                <constraint firstItem="fmV-yR-UDA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="TKe-S5-7bi"/>
+                <constraint firstAttribute="trailing" secondItem="DaY-mH-Gub" secondAttribute="trailing" constant="20" id="YrL-C1-lGm"/>
+                <constraint firstItem="DaY-mH-Gub" firstAttribute="height" secondItem="fmV-yR-UDA" secondAttribute="height" multiplier="0.5" constant="-10" id="bc1-9d-H83"/>
+                <constraint firstItem="DaY-mH-Gub" firstAttribute="top" secondItem="fmV-yR-UDA" secondAttribute="top" id="cgq-PN-YbY"/>
+                <constraint firstItem="VT7-ad-Rtf" firstAttribute="height" secondItem="fmV-yR-UDA" secondAttribute="height" multiplier="0.5" constant="-10" id="kux-1I-5aE"/>
+                <constraint firstItem="DaY-mH-Gub" firstAttribute="leading" secondItem="fmV-yR-UDA" secondAttribute="trailing" constant="20" id="sf4-xP-FI5"/>
+                <constraint firstItem="VT7-ad-Rtf" firstAttribute="bottom" secondItem="fmV-yR-UDA" secondAttribute="bottom" id="ylJ-BB-qxM"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

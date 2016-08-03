@@ -25,6 +25,15 @@ extension UIImage {
     }
 }
 
+extension UICollectionView {
+    func reloadAllSections() {
+        let range = NSRange(location: 0, length: numberOfSections())
+        let sections = NSIndexSet(indexesInRange: range)
+
+        reloadSections(sections)
+    }
+}
+
 extension String {
     var uiColor: UIColor? {
         let scanner = NSScanner(string: self)
@@ -44,11 +53,11 @@ extension String {
     }
 }
 
-extension UICollectionView {
-    func reloadAllSections() {
-        let range = NSRange(location: 0, length: numberOfSections())
-        let sections = NSIndexSet(indexesInRange: range)
-
-        reloadSections(sections)
+extension NSLocale {
+    var iso639String: String {
+        guard let value = objectForKey(NSLocaleLanguageCode) as? String else {
+            return "en"
+        }
+        return value
     }
 }

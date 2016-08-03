@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kKK-VR-vIJ" customClass="DynamicView" customModule="FlybitsBank" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="USG-89-5MV">
+                    <rect key="frame" x="20" y="225" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="USG-89-5MV" secondAttribute="height" multiplier="1:1" id="1rJ-qm-xRY"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-un-bka" userLabel="Name Label">
+                    <rect key="frame" x="190" y="225" width="390" height="65"/>
+                    <color key="backgroundColor" red="0.2436818372" green="0.64723154360000001" blue="0.95393770970000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUy-YC-s0w" userLabel="Occupation Label">
+                    <rect key="frame" x="190" y="310" width="390" height="65"/>
+                    <color key="backgroundColor" red="0.2436818372" green="0.64723154360000001" blue="0.95393770970000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DBk-un-bka" firstAttribute="leading" secondItem="USG-89-5MV" secondAttribute="trailing" constant="20" id="1Hf-Fm-cas"/>
+                <constraint firstAttribute="trailing" secondItem="DBk-un-bka" secondAttribute="trailing" constant="20" id="2Vv-k2-8S6"/>
+                <constraint firstItem="MUy-YC-s0w" firstAttribute="leading" secondItem="USG-89-5MV" secondAttribute="trailing" constant="20" id="Any-bG-5Zu"/>
+                <constraint firstItem="USG-89-5MV" firstAttribute="leading" secondItem="kKK-VR-vIJ" secondAttribute="leading" constant="20" id="DhC-SO-fYk"/>
+                <constraint firstItem="USG-89-5MV" firstAttribute="width" secondItem="kKK-VR-vIJ" secondAttribute="width" multiplier="0.25" id="JnL-5t-CGv"/>
+                <constraint firstItem="MUy-YC-s0w" firstAttribute="height" secondItem="USG-89-5MV" secondAttribute="height" multiplier="0.5" constant="-10" id="TKX-63-1HG"/>
+                <constraint firstItem="DBk-un-bka" firstAttribute="height" secondItem="USG-89-5MV" secondAttribute="height" multiplier="0.5" constant="-10" id="fZn-P6-bD4"/>
+                <constraint firstItem="MUy-YC-s0w" firstAttribute="bottom" secondItem="USG-89-5MV" secondAttribute="bottom" id="iqm-GM-kj9"/>
+                <constraint firstItem="USG-89-5MV" firstAttribute="centerY" secondItem="kKK-VR-vIJ" secondAttribute="centerY" id="kQR-8a-dp5"/>
+                <constraint firstItem="DBk-un-bka" firstAttribute="top" secondItem="USG-89-5MV" secondAttribute="top" id="pO6-Ne-2Co"/>
+                <constraint firstAttribute="trailing" secondItem="MUy-YC-s0w" secondAttribute="trailing" constant="20" id="zBj-0T-CoB"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

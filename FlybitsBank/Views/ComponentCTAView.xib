@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DynamicView" customModule="FlybitsBank" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sjg-BC-isW">
+                    <rect key="frame" x="20" y="275" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="56l-b3-izt"/>
+                        <constraint firstAttribute="height" constant="50" id="QPe-PI-kNH"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2A-rz-LoA">
+                    <rect key="frame" x="90" y="289" width="490" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="wdI-Tj-Knh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="q2A-rz-LoA" secondAttribute="trailing" constant="20" id="Vnp-xB-P4S"/>
+                <constraint firstItem="q2A-rz-LoA" firstAttribute="leading" secondItem="sjg-BC-isW" secondAttribute="trailing" constant="20" id="XWG-Ol-mSU"/>
+                <constraint firstItem="q2A-rz-LoA" firstAttribute="centerY" secondItem="sjg-BC-isW" secondAttribute="centerY" id="anu-gX-0RF"/>
+                <constraint firstItem="sjg-BC-isW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="hDl-Et-Lgv"/>
+                <constraint firstItem="sjg-BC-isW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="l9l-38-Ytm"/>
+                <constraint firstAttribute="bottom" secondItem="sjg-BC-isW" secondAttribute="bottom" constant="20" id="lUU-Hd-NPq"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="lUU-Hd-NPq"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>
