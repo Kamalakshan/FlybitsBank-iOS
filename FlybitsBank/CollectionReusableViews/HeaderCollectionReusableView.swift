@@ -36,4 +36,10 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func prepareForReuse() {
+        contentView.backgroundColor = UIColor.clearColor()
+        titleLabel.text = ""
+        titleLabel.textColor = UIColor.blackColor()
+    }
 }

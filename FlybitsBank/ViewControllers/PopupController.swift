@@ -11,6 +11,7 @@ import UIKit
 class PopupController: UIViewController {
     // MARK: - IBOutlets
     var stackView: UIStackView!
+    var configuration: LayoutConfiguration?
 
     // MARK: - Lifecycle Functions
     override func viewDidLoad() {
@@ -21,35 +22,33 @@ class PopupController: UIViewController {
         stackView.distribution = .EqualSpacing
         stackView.alignment = .Center
         stackView.spacing = 0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(stackView)
         view.addConstraints(Utilities.fullContainerConstraints(stackView))
+
+        if let configuration = configuration {
+            layout(configuration)
+        }
     }
 
     // MARK: - Functions
     func layout(configuration: LayoutConfiguration) {
-        view.subviews.forEach({ $0.removeFromSuperview() })
-        for component in configuration.components {
-            // TODO: (TL) might need to add constraints
-            stackView.addArrangedSubview(component.view)
+        self.configuration = configuration
 
-            let constraints = constraintsForComponent(component)
-            view.addConstraints(constraints)
+        guard let stackView = stackView else {
+            return // Can't do much
         }
-    }
 
-    func constraintsForComponent(component: Component) -> [NSLayoutConstraint] {
-        let horizontalConstraints = Utilities.fullContainerConstraints(component.view, withInset: 0, forDirection: .Horizontal)
-
-        let verticalConstraints = heightConstraintsForComponent(component)
-
-        return horizontalConstraints + verticalConstraints
-    }
-
-    func heightConstraintsForComponent(component: Component) -> [NSLayoutConstraint] {
-        let format = "\(Utilities.LayoutDirection.Vertical.rawValue):[view(==\(component.view.frame.height)]"
-        let views = ["view" : component.view]
-
-        return NSLayoutConstraint.constraintsWithVisualFormat(format, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        for subview in stackView.subviews {
+            subview.removeFromSuperview()
+        }
+        let componentCount = configuration.components.count == 0 ? 1 : CGFloat(configuration.components.count)
+        let height = view.frame.height / componentCount
+        for component in configuration.components {
+            component.view.widthAnchor.constraintEqualToConstant(view.frame.width).active = true
+            component.view.heightAnchor.constraintEqualToConstant(height).active = true
+            stackView.addArrangedSubview(component.view)
+        }
     }
 }

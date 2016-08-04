@@ -81,7 +81,9 @@ class Utilities {
             guard let imageData = data, image = UIImage(data: imageData) where error == nil else {
                 return
             }
-            Utilities.transitionImage(imageView, image: image)
+            dispatch_async(dispatch_get_main_queue()) {
+                Utilities.transitionImage(imageView, image: image)
+            }
         }
         task.resume() // TODO: (TL) Cancel option?
     }

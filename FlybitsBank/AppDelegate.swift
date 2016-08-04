@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Session.sharedInstance.configuration.APIKey = "3B9733B1-685C-430C-A958-A60C7D6B9DC3"
         Session.sharedInstance.configuration.environment = .Production
+        Session.sharedInstance.configuration.preferredLocales = [
+            NSLocale(localeIdentifier: "en")
+        ]
 
         let notificationTypes: UIUserNotificationType = [.Badge, .Sound, .Alert]
         let settings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)

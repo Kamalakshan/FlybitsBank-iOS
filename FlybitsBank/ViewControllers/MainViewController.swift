@@ -252,7 +252,7 @@ extension MainViewController: MenuDelegate {
 
 extension MainViewController: OfferDisplayDelegate {
     func showFullScreen(viewController: PopupController) {
-        presentViewController(viewController, animated: true, completion: nil)
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
 
     func showBanner(view: UIView) {

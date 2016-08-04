@@ -84,7 +84,7 @@ struct Component {
 
     // TODO: (TL) Revisit these names (description shouldn't have 3 versions, first name and last name need to be fetched not passed along
     enum Property: String {
-        case Text = "title"
+        case Text = "text"
         case Description = "description"
         case Description1 = "description1"
         case Description2 = "description2"
@@ -182,7 +182,7 @@ struct LayoutConfiguration: ResponseObjectSerializable {
         }
 
 
-        // TODO: (TL) ...
+        // TODO: (TL) Get background image from Moment
         backgroundImage = UIImage()
         self.components = componentList.sort({ $0.0.properties[.Order] < $0.1.properties[.Order] })
     }

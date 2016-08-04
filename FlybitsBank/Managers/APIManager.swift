@@ -92,7 +92,7 @@ class APIManager {
                     return // Nothing we can do
                 }
                 self.branchTag = branchTag
-                let query = ZonesQuery.query()
+                let query = ZonesQuery()
                 query.location = locationProvider?.location
                 query.distance = Constants.BranchRadius
                 query.tagIDs = [branchTag.id]
@@ -101,7 +101,7 @@ class APIManager {
             }.execute()
             return
         }
-        let query = ZonesQuery.query()
+        let query = ZonesQuery()
         query.location = locationProvider?.location
         query.distance = Constants.BranchRadius
         query.tagIDs = [branchTag.id]
@@ -115,7 +115,7 @@ class APIManager {
 
     static func fetchConfigForPushedZone(zoneID: String, completion: (configuration: LayoutConfiguration?, error: NSError?) -> Void) {
         let finalCompletion: (configTagID: String, zoneID: String) -> Void = { (configTagID, zoneID) in
-            let query = MomentQuery.queryWithLimit(1)
+            let query = MomentQuery(limit: 1, offset: 0)
             query.tagIDs = [configTagID]
             query.zoneIDs = [zoneID]
             MomentRequest.Query(query) { (moments, pagination, error) in

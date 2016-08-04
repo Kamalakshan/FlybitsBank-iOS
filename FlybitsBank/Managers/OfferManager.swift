@@ -86,7 +86,6 @@ class OfferManager {
                 guard let configuration = configuration where error == nil else {
                     return // Can't show anything
                 }
-                print("Configuration: \(configuration)")
                 self.receivedNewOffer(configuration)
             }
         }
