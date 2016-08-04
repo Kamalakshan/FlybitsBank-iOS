@@ -6,9 +6,8 @@
 //  Copyright © 2016 Flybits Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-// protocol to update UI from layout config after being initialized from a .xib
-protocol ComponentConfigurable {
-    func updateFromProperties(properties: [Component.Property : String], mappings: [Component.Property : Int])
+protocol PropertyMapper {
+    static func map(value: String, to view: UIView)
 }

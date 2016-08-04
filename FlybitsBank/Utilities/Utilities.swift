@@ -29,17 +29,21 @@ class Utilities {
         return loadingView
     }()
 
-    static var flybitsBlue: UIColor {
+    static let flybitsBlue: UIColor = {
         return UIColor(red: 17/255.0, green: 109/255.0, blue: 190/255.0, alpha: 1.0)
-    }
+    }()
 
-    static var androidLightGray: UIColor {
+    static let androidLightGray: UIColor = {
         return UIColor(red: 219/255.0, green: 219/255.0, blue: 219/255.0, alpha: 1.0)
-    }
+    }()
 
-    static var androidDarkGray: UIColor {
+    static let androidDarkGray: UIColor = {
         return UIColor(red: 118/255.0, green: 118/255.0, blue: 118/255.0, alpha: 1.0)
-    }
+    }()
+
+    static let flybitsFont: UIFont = {
+        return UIFont(name: "flybits-generic-icons", size: 18)!
+    }()
 
     // MARK: - NSLayoutConstraint Functions
     static func fullContainerConstraints(view: UIView, withInset inset: CGSize = CGSize.zero) -> [NSLayoutConstraint] {
@@ -95,13 +99,9 @@ class Utilities {
     }
 
     // MARK: - Component Functions
-    static func viewForKind(kind: Component.Kind, properties: [Component.Property : String], mappings: [Component.Property : Int]) -> UIView? {
-        guard let view = NSBundle.mainBundle().loadNibNamed(kind.nibName, owner: nil, options: nil).first as? UIView else {
+    static func viewForKind(kind: Component.Kind) -> DynamicView? {
+        guard let view = NSBundle.mainBundle().loadNibNamed(kind.nibName, owner: nil, options: nil).first as? DynamicView else {
             return nil
-        }
-        if let configurableView = view as? ComponentConfigurable {
-            configurableView.updateFromProperties(properties, mappings: mappings)
-            return configurableView as? UIView
         }
         return view
     }

@@ -1,5 +1,5 @@
 //
-//  ImageComponentMapper.swift
+//  ImagePropertyMapper.swift
 //  FlybitsBank
 //
 //  Created by Terry Latanville on 2016-08-02.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct ImageComponentMapper: ComponentMapper {
-    func map(value: String, to view: UIView) {
+struct ImagePropertyMapper: PropertyMapper {
+    static func map(value: String, to view: UIView) {
         if let imageView = view as? UIImageView {
             if let image = UIImage(named: value) {
                 Utilities.transitionImage(imageView, image: image)

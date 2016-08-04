@@ -34,3 +34,15 @@ enum CacheError: Int {
         return NSError(domain: domain, code: rawValue, userInfo: nil)
     }
 }
+
+enum MomentMetadataError: Int {
+    case MetadataFormatError
+
+    var domain: String {
+        return "com.flybits.moments.metadata.format"
+    }
+
+    func error(userInfo: [String : AnyObject]?) -> NSError {
+        return NSError(domain: domain, code: rawValue, userInfo: userInfo)
+    }
+}

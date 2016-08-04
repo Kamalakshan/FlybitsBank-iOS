@@ -28,6 +28,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="q2A-rz-LoA" secondAttribute="trailing" constant="20" id="Vnp-xB-P4S"/>
                 <constraint firstItem="q2A-rz-LoA" firstAttribute="leading" secondItem="sjg-BC-isW" secondAttribute="trailing" constant="20" id="XWG-Ol-mSU"/>
@@ -41,6 +42,14 @@
                     <exclude reference="lUU-Hd-NPq"/>
                 </mask>
             </variation>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="YfI-Vl-aHJ" appends="YES" id="DvG-es-fZh"/>
+            </connections>
         </view>
+        <tapGestureRecognizer id="YfI-Vl-aHJ">
+            <connections>
+                <action selector="onGestureRecognized:" destination="iN0-l3-epB" id="Omv-An-gqU"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

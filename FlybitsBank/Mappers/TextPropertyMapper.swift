@@ -1,5 +1,5 @@
 //
-//  TextComponentMapper.swift
+//  TextPropertyMapper.swift
 //  FlybitsBank
 //
 //  Created by Terry Latanville on 2016-08-02.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct TextComponentMapper: ComponentMapper {
-    func map(value: String, to view: UIView) {
+struct TextPropertyMapper: PropertyMapper {
+    static func map(value: String, to view: UIView) {
         if let labelView = view as? UILabel {
             labelView.text = value
         } else if let textView = view as? UITextView {

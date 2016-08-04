@@ -43,7 +43,11 @@ class MainViewController: UICollectionViewController {
     }
 
     // MARK: - IBOutlets
+    @IBOutlet var stickyHeaderView: UIView!
     @IBOutlet var headerReusableView: HeaderCollectionReusableView! // TODO: (TL) Find a way to actually use this
+
+    // MARK: - NSLayoutContraints
+    var heightConstraint: NSLayoutConstraint!
 
     // MARK: - Properties
     var tokens = [NSObjectProtocol]()
@@ -55,6 +59,7 @@ class MainViewController: UICollectionViewController {
         navigationController?.navigationBar.barTintColor = DataCache.sharedCache.appConfigColor
         collectionView?.registerClass(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: Constants.HeaderReusableViewKind, withReuseIdentifier: Constants.HeaderReuseIdentifier)
 
+        setupHeaderView()
         registerForChanges()
 
         DataCache.sharedCache.refreshCurrentZone()
@@ -90,6 +95,38 @@ class MainViewController: UICollectionViewController {
             NSNotificationCenter.defaultCenter().removeObserver(token)
         }
         tokens.removeAll()
+    }
+
+    // MARK: - UI Helper Functions
+    func setupHeaderView() {
+        stickyHeaderView.backgroundColor = UIColor.greenColor() // TODO: (TL) ...
+        var size = stickyHeaderView.frame.size
+        size.height = 200
+        stickyHeaderView.frame = CGRect(origin: stickyHeaderView.frame.origin, size: size)
+        stickyHeaderView.translatesAutoresizingMaskIntoConstraints = false
+/*
+        let leftConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+        view.addConstraint(leftConstraint)
+
+        let rightConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        view.addConstraint(rightConstraint)
+ */
+        view.addConstraints(Utilities.fullContainerConstraints(stickyHeaderView, withInset: 0, forDirection: .Horizontal))
+
+        let topConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 10)
+        view.addConstraint(topConstraint)
+
+        heightConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 200)
+        view.addConstraint(heightConstraint)
+
+        updateOffsets()
+    }
+
+    func updateOffsets() {
+        var contentInset = collectionView!.contentInset
+        contentInset.top = heightConstraint.constant
+        collectionView?.contentInset = contentInset
+        collectionView?.scrollIndicatorInsets = contentInset
     }
 
     // MARK: - DataCache Notification Functions
@@ -242,6 +279,16 @@ class MainViewController: UICollectionViewController {
     }
 }
 
+// MARK: - UIScrollViewDelegate Functions
+extension MainViewController {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("Scroll View Offset: \(scrollView.contentOffset.y)")
+        heightConstraint.constant = scrollView.contentOffset.y < 0 ? -scrollView.contentOffset.y : 0
+        updateOffsets()
+    }
+}
+
+// MARK: - MenuDelegate Functions
 extension MainViewController: MenuDelegate {
     func onLogoutCompleted(success: Bool) {
         self.dismissViewControllerAnimated(false) { // Dismiss the menu & main VC in one animation
@@ -250,6 +297,7 @@ extension MainViewController: MenuDelegate {
     }
 }
 
+// MARK: - OfferDisplayDelegate
 extension MainViewController: OfferDisplayDelegate {
     func showFullScreen(viewController: PopupController) {
         self.presentViewController(viewController, animated: true, completion: nil)
