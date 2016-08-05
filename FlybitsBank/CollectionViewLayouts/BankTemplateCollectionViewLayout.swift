@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class BankTemplateCollectionViewLayout: UICollectionViewFlowLayout {
 
     // MARK: - Constants
@@ -181,3 +181,4 @@ class BankTemplateCollectionViewLayout: UICollectionViewFlowLayout {
         return attributes
     }
 }
+*/

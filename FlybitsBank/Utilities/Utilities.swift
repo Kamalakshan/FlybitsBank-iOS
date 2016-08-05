@@ -92,6 +92,18 @@ class Utilities {
         task.resume() // TODO: (TL) Cancel option?
     }
 
+    static func loadImage(button: UIButton, state: UIControlState, imageURL: NSURL, duration: NSTimeInterval = 0.2) {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, _, error) in
+            guard let imageData = data, image = UIImage(data: imageData) where error == nil else {
+                return
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                button.setImage(image, forState: state)
+            }
+        }
+        task.resume() // TODO: (TL) Cancel option?
+    }
+
     static func transitionImage(imageView: UIImageView, image: UIImage, duration: NSTimeInterval = 0.2, completion: ((finished: Bool) -> Void)? = nil) {
         UIView.transitionWithView(imageView, duration: duration, options: .TransitionCrossDissolve, animations: {
             imageView.image = image

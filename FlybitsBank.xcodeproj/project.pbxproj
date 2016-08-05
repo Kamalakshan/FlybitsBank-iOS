@@ -12,7 +12,6 @@
 		4901C74B1D539333002301E7 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901C74A1D539333002301E7 /* Protocols.swift */; };
 		491B4E111D3FD0AF007CA7BF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E101D3FD0AF007CA7BF /* Utilities.swift */; };
 		491B4E141D3FECC1007CA7BF /* MenuSlideInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E131D3FECC1007CA7BF /* MenuSlideInSegue.swift */; };
-		491B4E161D3FF121007CA7BF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E151D3FF121007CA7BF /* MenuViewController.swift */; };
 		49238EA41D40012700B60EC4 /* MenuSlideOutSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49238EA31D40012700B60EC4 /* MenuSlideOutSegue.swift */; };
 		49285A3C1D42439300EED45B /* SlideLeftSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49285A3B1D42439300EED45B /* SlideLeftSegue.swift */; };
 		49285A3E1D4243C200EED45B /* SlideRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49285A3D1D4243C200EED45B /* SlideRightSegue.swift */; };
@@ -28,9 +27,11 @@
 		495FB11B1D4107AD00BE42E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FB11A1D4107AD00BE42E1 /* User.swift */; };
 		495FB11F1D4113F100BE42E1 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FB11E1D4113F100BE42E1 /* DataCache.swift */; };
 		496A6C8E1D47F4C70085A6BE /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496A6C8D1D47F4C70085A6BE /* PassKit.framework */; };
-		497A7E541D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A7E531D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift */; };
-		497A7E561D3FBA8F00F188E2 /* AccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A7E551D3FBA8F00F188E2 /* AccountCollectionViewCell.swift */; };
-		497A7E581D3FBAA200F188E2 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A7E571D3FBAA200F188E2 /* BannerCollectionViewCell.swift */; };
+		49715ECB1D54C5EC00779B69 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49715ECA1D54C5EC00779B69 /* MainHeaderView.swift */; };
+		49715ECD1D54E69300779B69 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49715ECC1D54E69300779B69 /* Operators.swift */; };
+		49715ECF1D55196000779B69 /* ZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49715ECE1D55196000779B69 /* ZoneCollectionViewCell.swift */; };
+		49715ED11D551BC300779B69 /* InsetFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49715ED01D551BC300779B69 /* InsetFlowLayout.swift */; };
+		49715ED31D5537BF00779B69 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 49715ED21D5537BF00779B69 /* TODO.txt */; };
 		4989D18F1D4012AA0005F373 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989D18E1D4012AA0005F373 /* MenuTableViewCell.swift */; };
 		49B111D01D465EE700A2AB08 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B111CF1D465EE700A2AB08 /* APIManager.swift */; };
 		49B111D21D479ADE00A2AB08 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B111D11D479ADE00A2AB08 /* Branch.swift */; };
@@ -82,7 +83,6 @@
 		4901C74A1D539333002301E7 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Protocols.swift; path = Utilities/Protocols.swift; sourceTree = "<group>"; };
 		491B4E101D3FD0AF007CA7BF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Utilities/Utilities.swift; sourceTree = "<group>"; };
 		491B4E131D3FECC1007CA7BF /* MenuSlideInSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuSlideInSegue.swift; path = Segues/MenuSlideInSegue.swift; sourceTree = "<group>"; };
-		491B4E151D3FF121007CA7BF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		49238EA31D40012700B60EC4 /* MenuSlideOutSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuSlideOutSegue.swift; path = Segues/MenuSlideOutSegue.swift; sourceTree = "<group>"; };
 		49285A3B1D42439300EED45B /* SlideLeftSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideLeftSegue.swift; path = Segues/SlideLeftSegue.swift; sourceTree = "<group>"; };
 		49285A3D1D4243C200EED45B /* SlideRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideRightSegue.swift; path = Segues/SlideRightSegue.swift; sourceTree = "<group>"; };
@@ -98,9 +98,11 @@
 		495FB11E1D4113F100BE42E1 /* DataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataCache.swift; path = Managers/DataCache.swift; sourceTree = "<group>"; };
 		496A6C8D1D47F4C70085A6BE /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		496A6C8F1D47F4C70085A6BE /* FlybitsBank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FlybitsBank.entitlements; sourceTree = "<group>"; };
-		497A7E531D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceCollectionViewCell.swift; path = CollectionViewCells/ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
-		497A7E551D3FBA8F00F188E2 /* AccountCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountCollectionViewCell.swift; path = CollectionViewCells/AccountCollectionViewCell.swift; sourceTree = "<group>"; };
-		497A7E571D3FBAA200F188E2 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BannerCollectionViewCell.swift; path = CollectionViewCells/BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		49715ECA1D54C5EC00779B69 /* MainHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainHeaderView.swift; path = Views/MainHeaderView.swift; sourceTree = "<group>"; };
+		49715ECC1D54E69300779B69 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Utilities/Operators.swift; sourceTree = "<group>"; };
+		49715ECE1D55196000779B69 /* ZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoneCollectionViewCell.swift; path = CollectionViewCells/ZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		49715ED01D551BC300779B69 /* InsetFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsetFlowLayout.swift; path = CollectionViewLayouts/InsetFlowLayout.swift; sourceTree = "<group>"; };
+		49715ED21D5537BF00779B69 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		4989D18E1D4012AA0005F373 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewCell.swift; path = TableViewCells/MenuTableViewCell.swift; sourceTree = "<group>"; };
 		49B111CF1D465EE700A2AB08 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = Managers/APIManager.swift; sourceTree = "<group>"; };
 		49B111D11D479ADE00A2AB08 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Branch.swift; path = Models/Branch.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				491B4E101D3FD0AF007CA7BF /* Utilities.swift */,
 				4901C74A1D539333002301E7 /* Protocols.swift */,
 				4941D2C01D401522006D6630 /* Extensions.swift */,
+				49715ECC1D54E69300779B69 /* Operators.swift */,
 				49B28A241D5131CD00F353A7 /* Errors.swift */,
 			);
 			name = Utilities;
@@ -189,6 +192,7 @@
 				49B28A051D51092F00F353A7 /* ComponentPromo1View.xib */,
 				49B28A071D51093B00F353A7 /* ComponentPromo2View.xib */,
 				49B28A171D510BD800F353A7 /* DynamicView.swift */,
+				49715ECA1D54C5EC00779B69 /* MainHeaderView.swift */,
 				49DEDBE31D53D6E400C8625C /* GradientButton.swift */,
 			);
 			name = Views;
@@ -228,9 +232,7 @@
 		497A7E521D3FBA5E00F188E2 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				497A7E551D3FBA8F00F188E2 /* AccountCollectionViewCell.swift */,
-				497A7E531D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift */,
-				497A7E571D3FBAA200F188E2 /* BannerCollectionViewCell.swift */,
+				49715ECE1D55196000779B69 /* ZoneCollectionViewCell.swift */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -256,6 +258,7 @@
 		49E9EC211D3E787500E373B8 = {
 			isa = PBXGroup;
 			children = (
+				49715ED21D5537BF00779B69 /* TODO.txt */,
 				49E9EC2C1D3E787500E373B8 /* FlybitsBank */,
 				49E9EC3F1D3E8D5D00E373B8 /* Frameworks */,
 				49E9EC2B1D3E787500E373B8 /* Products */,
@@ -311,7 +314,6 @@
 			children = (
 				49E9EC4C1D3E980200E373B8 /* LoginViewController.swift */,
 				49E9EC4A1D3E97F300E373B8 /* MainViewController.swift */,
-				491B4E151D3FF121007CA7BF /* MenuViewController.swift */,
 				4901C73D1D52619F002301E7 /* PopupController.swift */,
 			);
 			name = ViewControllers;
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				49E9EC4F1D3E9D5300E373B8 /* BankTemplateCollectionViewLayout.swift */,
+				49715ED01D551BC300779B69 /* InsetFlowLayout.swift */,
 			);
 			name = CollectionViewLayouts;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				49592C5A1D48EFF700F696E1 /* LoadingView.xib in Resources */,
 				49B28A1A1D510FAA00F353A7 /* ComponentDescriptionView.xib in Resources */,
 				49B289FC1D5108E100F353A7 /* ComponentTitleView.xib in Resources */,
+				49715ED31D5537BF00779B69 /* TODO.txt in Resources */,
 				4901C7471D537A15002301E7 /* flybits-generic-icons.ttf in Resources */,
 				49B28A081D51093B00F353A7 /* ComponentPromo2View.xib in Resources */,
 				49E9EC351D3E787500E373B8 /* Assets.xcassets in Resources */,
@@ -431,22 +435,23 @@
 				4901C73E1D52619F002301E7 /* PopupController.swift in Sources */,
 				49E9EC4D1D3E980200E373B8 /* LoginViewController.swift in Sources */,
 				49E9EC4B1D3E97F300E373B8 /* MainViewController.swift in Sources */,
+				49715ECB1D54C5EC00779B69 /* MainHeaderView.swift in Sources */,
 				4901C74B1D539333002301E7 /* Protocols.swift in Sources */,
 				49DEDBE01D53ADDC00C8625C /* Component.swift in Sources */,
 				49E9EC501D3E9D5300E373B8 /* BankTemplateCollectionViewLayout.swift in Sources */,
 				49E9EC521D3EC94400E373B8 /* HeaderCollectionReusableView.swift in Sources */,
 				495FB11F1D4113F100BE42E1 /* DataCache.swift in Sources */,
+				49715ECF1D55196000779B69 /* ZoneCollectionViewCell.swift in Sources */,
 				495FB11B1D4107AD00BE42E1 /* User.swift in Sources */,
-				491B4E161D3FF121007CA7BF /* MenuViewController.swift in Sources */,
+				49715ECD1D54E69300779B69 /* Operators.swift in Sources */,
 				49B28A251D5131CD00F353A7 /* Errors.swift in Sources */,
 				49592C671D4A5CBB00F696E1 /* AOBRequest.swift in Sources */,
 				4941D2C41D401901006D6630 /* MenuTableHeaderView.swift in Sources */,
+				49715ED11D551BC300779B69 /* InsetFlowLayout.swift in Sources */,
 				49B28A181D510BD800F353A7 /* DynamicView.swift in Sources */,
 				491B4E141D3FECC1007CA7BF /* MenuSlideInSegue.swift in Sources */,
-				497A7E541D3FBA7A00F188E2 /* ServiceCollectionViewCell.swift in Sources */,
 				49B28A1D1D5119CC00F353A7 /* TextPropertyMapper.swift in Sources */,
 				49DEDBE21D53AF4E00C8625C /* BaseMomentMetadata.swift in Sources */,
-				497A7E561D3FBA8F00F188E2 /* AccountCollectionViewCell.swift in Sources */,
 				49B289F81D50E6E400F353A7 /* OfferManager.swift in Sources */,
 				491B4E111D3FD0AF007CA7BF /* Utilities.swift in Sources */,
 				49592C621D492A0300F696E1 /* LayoutConfiguration.swift in Sources */,
@@ -457,7 +462,6 @@
 				49B28A1F1D511ADE00F353A7 /* ImagePropertyMapper.swift in Sources */,
 				49306F931D47D0A2006F62DB /* Feature.swift in Sources */,
 				49238EA41D40012700B60EC4 /* MenuSlideOutSegue.swift in Sources */,
-				497A7E581D3FBAA200F188E2 /* BannerCollectionViewCell.swift in Sources */,
 				49E9EC2E1D3E787500E373B8 /* AppDelegate.swift in Sources */,
 				49285A3C1D42439300EED45B /* SlideLeftSegue.swift in Sources */,
 				4941D2C11D401522006D6630 /* Extensions.swift in Sources */,

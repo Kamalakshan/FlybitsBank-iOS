@@ -26,8 +26,10 @@ class APIManager {
     static func login(username: String?, password: String?, completion: (success: Bool, error: NSError?) -> Void) {
         if Session.sharedInstance.canLoginUsingSessionToken() {
             Session.sharedInstance.validateSession { (valid, currentUser, error) in
-                if valid && error == nil {
+                if let currentUser = currentUser where valid && error == nil {
                     // TODO: (TL) Tokens
+                    let name = (currentUser.profile?.firstname ?? "") + " " + (currentUser.profile?.lastname ?? "")
+                    DataCache.sharedCache.currentUser = User(name: name, persona: "STUDENT", image: currentUser.profile?.image)
                     NSNotificationCenter.defaultCenter().addObserverForName(PushManager.Constants.PushConnected, object: nil, queue: nil) { (notification) in
                         DataCache.sharedCache.pushConnected = true
                         DataCache.sharedCache.appConfig?.subscribeToPush()
@@ -167,6 +169,9 @@ class APIManager {
             } else {
                 PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Foreground)
             }
+            let name = (user?.profile?.firstname ?? "") + " " + (user?.profile?.lastname ?? "")
+            DataCache.sharedCache.currentUser = User(name: name, persona: "STUDENT", image: user?.profile?.image)
+
             completion(success: true, error: nil)
         }.execute()
     }

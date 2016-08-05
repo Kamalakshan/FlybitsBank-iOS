@@ -46,6 +46,7 @@ class LoginViewController: UIViewController {
         registerForChanges()
         registerForKeyboardEvents()
 
+        DataCache.sharedCache.refreshAppTags()
         if DataCache.sharedCache.appConfig == nil {
             loadingAppConfig = true
             DataCache.sharedCache.refreshAppConfig()

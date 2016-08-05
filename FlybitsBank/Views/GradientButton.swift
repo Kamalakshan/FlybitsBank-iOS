@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class GradientButton: UIButton {
 
     // MARK: - IBInspectables
@@ -18,33 +19,23 @@ class GradientButton: UIButton {
     // MARK: - Properties
     private var gradientLayer: CAGradientLayer!
 
-    // MARK: - Lifecycle Functions
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        addGradientLayer(frame)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        addGradientLayer(frame)
-    }
-
     // MARK: - Functions
-    func addGradientLayer(frame: CGRect) {
-        gradientLayer = CAGradientLayer()
+    func updateGradient(frame: CGRect) {
+        if gradientLayer == nil {
+            gradientLayer = CAGradientLayer()
+            layer.addSublayer(gradientLayer)
+        }
         gradientLayer.frame = frame
-        gradientLayer.colors = [gradientStart.CGColor, gradientEnd.CGColor]
+        if let startColor = gradientStart?.CGColor, endColor = gradientEnd?.CGColor {
+            gradientLayer.colors = [startColor, endColor]
+        }
         gradientLayer.locations = [0, 1]
-
-        layer.addSublayer(gradientLayer)
     }
 
     // MARK: - UIView Overrides
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        gradientLayer.frame = frame
+        updateGradient(frame)
     }
 }

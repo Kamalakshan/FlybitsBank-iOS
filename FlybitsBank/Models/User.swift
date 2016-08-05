@@ -6,22 +6,24 @@
 //  Copyright © 2016 Flybits Inc. All rights reserved.
 //
 
-import Foundation
+import FlybitsSDK
 
 struct User: Equatable, Hashable {
 
     // MARK: - Properties
     var name: String
     var persona: String
+    var image: Image?
 
     var hashValue: Int {
         return 0 // TODO: (TL) finish
     }
 
     // MARK: - Lifecycle Functions
-    init(name: String, persona: String) { // TODO: (TL) create persona struct
+    init(name: String, persona: String, image: Image?) { // TODO: (TL) create persona struct
         self.name = name
         self.persona = persona
+        self.image = image
     }
 }
 

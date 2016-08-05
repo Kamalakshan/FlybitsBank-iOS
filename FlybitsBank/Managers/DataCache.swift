@@ -20,6 +20,8 @@ class DataCache {
     struct Notifications {
         static let AppConfigurationUpdated = "com.flybits.notification.appConfigUpdated"
         static let AppConfigurationUpdateError = "com.flybits.notification.appConfigUpdateError"
+        static let TagsUpdated = "com.flybits.tags.updated"
+        static let TagsUpdateError = "com.flybits.tags.updateError"
         static let CacheUpdated = "com.flybits.notification.cacheUpdated"
         static let CacheUpdateError = "com.flybits.notification.cacheUpdateError"
         static let OfferReceived = "com.flybits.notification.offerReceived"
@@ -51,9 +53,13 @@ class DataCache {
         }
     }
 
+    // User
+    var currentUser: User?
+
     // App Configuration
     private(set) var appConfig: Zone?
     private(set) var appFeatures = [Moment]()
+    private(set) var visibleTags = [VisibleTag]()
     private(set) var configTag: Tag?
 
     // Current Zone & Moments
@@ -72,11 +78,6 @@ class DataCache {
 
     // MARK: - Lifecycle Functions
     private init() {}
-
-    // MARK: - Functions
-    func appFeaturesForFilter(filter: String) -> [Moment] {
-        return appFeatures.filter({ $0.tagIDs.contains(filter) })
-    }
 
     // MARK: - NSNotificationCenter Helper Functions
     func registerForAppConfigurationChanges() -> NSObjectProtocol? {
@@ -127,7 +128,7 @@ class DataCache {
         observers[topic] = token
     }
 
-    // Flybits SDK Wrapper Functions
+    // MARK: - Flybits SDK Wrapper Functions
     func refreshCurrentZone() {
         APIManager.fetchBranchZones { (zones, pager, error) in
             guard let error = error else {
@@ -191,6 +192,23 @@ class DataCache {
         refreshAppConfigData()
     }
 
+    func refreshAppTags() {
+        visibleTags.removeAll()
+        TagsRequest.Query(TagQuery()) { (tags: [VisibleTag]?, pagination, error) in
+            guard let tags = tags where error == nil else {
+                let userInfo: [String : AnyObject] = [
+                    UserInfoKeys.Error : TagError.NoVisibleTags.error
+                ]
+                NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TagsUpdateError, object: nil, userInfo: userInfo)
+                return // Nothing we can do w/ an empty list
+            }
+            let visibleTags = tags.filter({ $0.visibility })
+            self.visibleTags.appendContentsOf(visibleTags)
+            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TagsUpdated, object: nil)
+        }.execute()
+    }
+
+    // MARK: - Helper Functions
     private func refreshAppConfigData() {
         guard let configurationZoneID = configTag?.zoneID.first else {
             let userInfo: [String : AnyObject] = [

@@ -1,0 +1,12 @@
+1) Currently the API Manager is a thin wrapper for the SDK (the idea was that no other class needed to import the FlybitsSDK other than the DataCache and maybe the OfferManager)
+2) UI and other pieces should use the DataCache directly rather than attempting to make API requests
+3) The DataCache listens for various updates via MQTT and APNS so data should never be stale (there are some missing pieces)
+
+TODO:
+- I've added as many TODO comments as I could think of, but here's some additional notes
+
+- Originally, I was requesting the config Zone and the closest Zone in the area, the Moments of this Zone would then become the various elements on screen. The design was changed on me a little late in the game (it happens, no big deal) but now all the Zones in the area should be retrieved and based on how their tagged, show a different icon (the tags are being fetched and their icons are being loaded, but the Zones are not being fetched and sorted/displayed in the main UI)
+
+- As per my JIRA comments, (you'll see 'em) you'll need to implement some detail UIs
+
+- I wanted to touch up the full screen offers before I left (stack view kinda suck!) sadly I didn't get to it as I was implementing the newest layout. The parser is there, it's more a case of laying things out on the screen and changing text colours and background images. Most of the work should be done in the PopupController using the LayoutConfiguration.

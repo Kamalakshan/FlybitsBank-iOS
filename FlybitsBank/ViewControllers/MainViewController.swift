@@ -7,21 +7,16 @@
 //
 
 import UIKit
+import FlybitsSDK // TODO: (TL) Can we remove this requirement?
 
 enum CollectionViewSection: Int {
-    case Accounts
-    case Services
-    case Banner
+    case Zones
     case Count
 
     var reuseIdentifier: String {
         switch self {
-        case .Accounts:
-            return "AccountReuseIdentifier"
-        case .Services:
-            return "ServiceReuseIdentifier"
-        case .Banner:
-            return "BannerReuseIdentifier"
+        case .Zones:
+            return "ZoneReuseIdentifier"
 
         default:
             return "None"
@@ -33,6 +28,10 @@ class MainViewController: UICollectionViewController {
 
     // MARK: - Constants
     struct Constants {
+        static let FilterTitle = "Filter By"
+        static let Nearby = "Nearby"
+        static let All = "All"
+        static let Cancel = "Cancel"
         static let ShowLoginScreenSegue = "ShowLoginScreenSegue"
         static let MenuSlideInSegue = "MenuSlideInSegue"
         static let Accounts = "Accounts"
@@ -40,10 +39,11 @@ class MainViewController: UICollectionViewController {
         static let HeaderReuseIdentifier = "HeaderReuseIdentifier"
         static let HeaderReusableViewKind = "HeaderReuseIdentifier"
         static let AnimationDuration = 0.2
+        static let ItemPadding: CGFloat = 10
     }
 
     // MARK: - IBOutlets
-    @IBOutlet var stickyHeaderView: UIView!
+    @IBOutlet var stickyHeaderView: MainHeaderView!
     @IBOutlet var headerReusableView: HeaderCollectionReusableView! // TODO: (TL) Find a way to actually use this
 
     // MARK: - NSLayoutContraints
@@ -60,25 +60,11 @@ class MainViewController: UICollectionViewController {
         collectionView?.registerClass(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: Constants.HeaderReusableViewKind, withReuseIdentifier: Constants.HeaderReuseIdentifier)
 
         setupHeaderView()
+        setupCollectionView()
         registerForChanges()
 
         DataCache.sharedCache.refreshCurrentZone()
         OfferManager.sharedManager.delegate = self
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let segueIdentifier = segue.identifier else {
-            return // No identifier
-        }
-        switch segueIdentifier {
-        case Constants.MenuSlideInSegue:
-            if let destinationViewController = segue.destinationViewController as? MenuViewController {
-                destinationViewController.delegate = self
-            }
-
-        default:
-            break
-        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -99,40 +85,98 @@ class MainViewController: UICollectionViewController {
 
     // MARK: - UI Helper Functions
     func setupHeaderView() {
-        
-        stickyHeaderView.removeFromSuperview() // starts with empty superview
-        view.addSubview(stickyHeaderView)
+        stickyHeaderView.delegate = self
         stickyHeaderView.clipsToBounds = true
-        stickyHeaderView.backgroundColor = UIColor.greenColor() // TODO: (TL) ...
-
         stickyHeaderView.translatesAutoresizingMaskIntoConstraints = false
-//        stickyHeaderView.autoresizingMask = .None
-        print(stickyHeaderView.constraints)
-        view.removeConstraints(stickyHeaderView.constraints)
-        stickyHeaderView.layoutIfNeeded()
-        
-/*
-        let leftConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
-        view.addConstraint(leftConstraint)
 
-        let rightConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
-        view.addConstraint(rightConstraint)
- */
+        view.addSubview(stickyHeaderView)
         view.addConstraints(Utilities.fullContainerConstraints(stickyHeaderView, withInset: 0, forDirection: .Horizontal))
 
         let topConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0)
         view.addConstraint(topConstraint)
 
-        heightConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 200)
+        heightConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: view.frame.height / 2)
         view.addConstraint(heightConstraint)
 
-//        updateOffsets()
         var inset = collectionView!.contentInset
         inset.top = heightConstraint.constant
         collectionView?.contentInset = inset
     }
 
-    // MARK: - DataCache Notification Functions
+    func setupCollectionView() {
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return // Can't do it w/ a custom layout
+        }
+        flowLayout.itemSize = CGSize(width: view.frame.width - Constants.ItemPadding, height: flowLayout.itemSize.height)
+        flowLayout.minimumInteritemSpacing = Constants.ItemPadding
+    }
+
+    // MARK: - IBActions
+    @IBAction func unwindToMainView(sender: UIStoryboardSegue) {
+        /* EMPTY */
+    }
+}
+
+// MARK: - UICollectionViewController Functions
+extension MainViewController {
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return CollectionViewSection.Count.rawValue
+    }
+
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case CollectionViewSection.Zones.rawValue:
+            return 10
+
+        default:
+            return 0
+        }
+    }
+
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        switch indexPath.section {
+        case CollectionViewSection.Zones.rawValue:
+            return self.collectionView(collectionView, zonesCellForItemAtIndexPath: indexPath)
+
+        default:
+            return UICollectionViewCell()
+        }
+    }
+
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("Clicky: \(indexPath)")
+    }
+
+    // MARK: - UICollectionView Helper Functions
+    func collectionView(collectionView: UICollectionView, zonesCellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewSection.Zones.reuseIdentifier, forIndexPath: indexPath) as! ZoneCollectionViewCell
+
+        // if let tag = DataCache.sharedCache.visibleTags.filter({ $0.id == zoneID }).first
+        // Utilities.loadAndCrossfadeImage(<#T##imageView: UIImageView##UIImageView#>, image: <#T##Image#>)
+        let image = UIImage.image(with: UIColor.greenColor())
+        Utilities.transitionImage(cell.iconImageView, image: image) // TODO: (TL) Gradient
+        cell.titleLabel.text = "Zone Name" // TODO: (TL) ...
+        cell.descriptionLabel.text = "Distance" // TODO: (TL) ...
+
+        applyCellStyle(cell)
+
+        return cell
+    }
+
+    func applyCellStyle(cell: UICollectionViewCell) {
+        // General
+        cell.layer.masksToBounds = false
+
+        // Shadows
+        cell.layer.shadowColor = UIColor.lightGrayColor().CGColor
+        cell.layer.shadowOpacity = 0.8
+        cell.layer.shadowRadius = 4
+        cell.layer.shadowOffset = CGSize.zero
+    }
+}
+
+// MARK: - DataCache Notification Functions
+extension MainViewController {
     func registerForChanges() {
         var token = NSNotificationCenter.defaultCenter().addObserverForName(DataCache.Notifications.AppConfigurationUpdated, object: nil, queue: nil) { (notification) in
             dispatch_async(dispatch_get_main_queue()) {
@@ -185,116 +229,12 @@ class MainViewController: UICollectionViewController {
     func appContentUpdateFailed() {
         // TODO: (TL) ?
     }
-
-    // MARK: - UICollectionViewController Functions
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return CollectionViewSection.Count.rawValue
-    }
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case CollectionViewSection.Accounts.rawValue:
-            return 3 // TODO: (TL) Get proper number
-        case CollectionViewSection.Services.rawValue:
-            return DataCache.sharedCache.localFeatures.count
-        case CollectionViewSection.Banner.rawValue:
-            return 1 // TODO: (TL) This likely is always 1
-
-        default:
-            return 0
-        }
-    }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case CollectionViewSection.Accounts.rawValue:
-            return self.collectionView(collectionView, accountCellForItemAtIndexPath: indexPath)
-        case CollectionViewSection.Services.rawValue:
-            return self.collectionView(collectionView, serviceCellForItemAtIndexPath: indexPath)
-        case CollectionViewSection.Banner.rawValue:
-            return self.collectionView(collectionView, bannerCellForItemAtIndexPath: indexPath)
-
-        default:
-            return UICollectionViewCell()
-        }
-    }
-
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: Constants.HeaderReuseIdentifier, forIndexPath: indexPath) as! HeaderCollectionReusableView
-
-        switch indexPath.section {
-        case CollectionViewSection.Accounts.rawValue:
-            headerView.contentView.backgroundColor = DataCache.sharedCache.appConfigColor
-            headerView.titleLabel.text = Constants.Accounts
-            headerView.titleLabel.textColor = UIColor.whiteColor()
-        case CollectionViewSection.Services.rawValue:
-            let localFeatures = DataCache.sharedCache.localFeatures
-
-            headerView.contentView.backgroundColor = Utilities.androidLightGray
-            headerView.titleLabel.text = "\(Constants.Services) (\(localFeatures.count))"
-            headerView.titleLabel.textColor = Utilities.androidDarkGray
-            headerView.titleLabel.textAlignment = .Center
-
-        default:
-            break
-        }
-
-        return headerView
-    }
-
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("Clicky: \(indexPath)")
-    }
-
-    // MARK: - UICollectionView Helper Functions
-    func collectionView(collectionView: UICollectionView, accountCellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewSection.Accounts.reuseIdentifier, forIndexPath: indexPath) as! AccountCollectionViewCell
-
-        cell.accountNameLabel.text = "General Chequing Account"
-        cell.balanceLabel.text = "$1,433.43"
-        cell.accountNumberLabel.text = "20-33-55 12345678"
-        cell.balanceDescriptionLabel.text = "Available Balance"
-
-        return cell
-    }
-
-    func collectionView(collectionView: UICollectionView, serviceCellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewSection.Services.reuseIdentifier, forIndexPath: indexPath) as! ServiceCollectionViewCell
-
-        let feature = DataCache.sharedCache.localFeatures[indexPath.row]
-        // imageWithRenderingMode(.AlwaysTemplate)
-        // Utilities.loadAndCrossfadeImage(cell.serviceImageView, image: image, duration: Constants.AnimationDuration)
-        cell.serviceImageView.image = UIImage(named: "TestImage")!.imageWithRenderingMode(.AlwaysTemplate)
-        cell.serviceImageView.tintColor = DataCache.sharedCache.appConfigColor
-        cell.serviceLabel.text = feature.name
-        cell.serviceLabel.textColor = DataCache.sharedCache.appConfigColor
-
-        return cell
-    }
-
-    func collectionView(collectionView: UICollectionView, bannerCellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewSection.Banner.reuseIdentifier, forIndexPath: indexPath)
-    }
-
-    // MARK: - IBActions
-    @IBAction func unwindToMainView(sender: UIStoryboardSegue) {
-        /* EMPTY */
-    }
 }
 
 // MARK: - UIScrollViewDelegate Functions
 extension MainViewController {
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        heightConstraint.constant = max(-collectionView!.contentOffset.y, 0)
-    }
-}
-
-// MARK: - MenuDelegate Functions
-extension MainViewController: MenuDelegate {
-    func onLogoutCompleted(success: Bool) {
-        self.dismissViewControllerAnimated(false) { // Dismiss the menu & main VC in one animation
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        heightConstraint.constant = max(-collectionView!.contentOffset.y, stickyHeaderView.minHeight)
     }
 }
 
@@ -306,5 +246,25 @@ extension MainViewController: OfferDisplayDelegate {
 
     func showBanner(view: UIView) {
         // TODO: (TL) ...
+    }
+}
+
+// MARK: - MainHeaderViewDelegate
+extension MainViewController: MainHeaderViewDelegate {
+    func headerViewFilterAction(headerView: MainHeaderView) {
+        let alertController = UIAlertController(title: Constants.FilterTitle, message: nil, preferredStyle: .ActionSheet)
+
+        let nearbyAction = UIAlertAction(title: Constants.Nearby, style: .Default) { (action) in
+            headerView.filterButton.setTitle("Nearby v", forState: .Normal)
+        }
+        let allAction = UIAlertAction(title: Constants.All, style: .Default) { (action) in
+            headerView.filterButton.setTitle("All v", forState: .Normal)
+        }
+        let cancelAction = UIAlertAction(title: Constants.Cancel, style: .Cancel, handler: nil)
+
+        alertController.addAction(nearbyAction)
+        alertController.addAction(allAction)
+        alertController.addAction(cancelAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

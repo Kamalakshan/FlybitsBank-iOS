@@ -35,11 +35,23 @@ enum CacheError: Int {
     }
 }
 
+enum TagError: Int {
+    case NoVisibleTags
+
+    var domain: String {
+        return "com.flybits.tags.error"
+    }
+
+    var error: NSError {
+        return NSError(domain: domain, code: rawValue, userInfo: nil)
+    }
+}
+
 enum MomentMetadataError: Int {
     case MetadataFormatError
 
     var domain: String {
-        return "com.flybits.moments.metadata.format"
+        return "com.flybits.moments.metadata.error"
     }
 
     func error(userInfo: [String : AnyObject]?) -> NSError {
