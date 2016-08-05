@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -192,11 +192,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="DaT-4m-Ejn" customClass="BankTemplateCollectionViewLayout" customModule="FlybitsBank" customModuleProvider="target"/>
-                        <view key="backgroundView" contentMode="scaleToFill" id="BEZ-ea-MPX">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AccountReuseIdentifier" id="mlZ-mJ-xFF" userLabel="Account CollectionViewCell" customClass="AccountCollectionViewCell" customModule="FlybitsBank" customModuleProvider="target">
                                 <rect key="frame" x="-0.5" y="10" width="601" height="70"/>
@@ -384,6 +379,36 @@
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXf-R3-fpt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="BEZ-ea-MPX">
+                    <rect key="frame" x="0.0" y="0.0" width="524" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestBanner" translatesAutoresizingMaskIntoConstraints="NO" id="wGR-4K-ykr">
+                            <rect key="frame" x="142" y="36" width="240" height="128"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="x6e-QB-rtg"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="x6e-QB-rtg"/>
+                                </mask>
+                            </variation>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="wGR-4K-ykr" firstAttribute="centerY" secondItem="BEZ-ea-MPX" secondAttribute="centerY" id="AIx-o2-3Ve"/>
+                        <constraint firstItem="wGR-4K-ykr" firstAttribute="centerX" secondItem="BEZ-ea-MPX" secondAttribute="centerX" id="ZCX-km-Pch"/>
+                        <constraint firstItem="wGR-4K-ykr" firstAttribute="top" secondItem="BEZ-ea-MPX" secondAttribute="top" constant="36" id="bBm-Hc-On0"/>
+                        <constraint firstItem="wGR-4K-ykr" firstAttribute="leading" secondItem="BEZ-ea-MPX" secondAttribute="leading" constant="142" id="g7z-Ih-AhN"/>
+                        <constraint firstItem="wGR-4K-ykr" firstAttribute="top" secondItem="BEZ-ea-MPX" secondAttribute="top" constant="36" id="h7m-h1-OXL"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="h7m-h1-OXL"/>
+                        </mask>
+                    </variation>
+                </view>
                 <exit id="AWI-kP-EeG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1192" y="58"/>

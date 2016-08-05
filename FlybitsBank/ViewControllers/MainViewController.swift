@@ -99,11 +99,18 @@ class MainViewController: UICollectionViewController {
 
     // MARK: - UI Helper Functions
     func setupHeaderView() {
+        
+        stickyHeaderView.removeFromSuperview() // starts with empty superview
+        view.addSubview(stickyHeaderView)
+        stickyHeaderView.clipsToBounds = true
         stickyHeaderView.backgroundColor = UIColor.greenColor() // TODO: (TL) ...
-        var size = stickyHeaderView.frame.size
-        size.height = 200
-        stickyHeaderView.frame = CGRect(origin: stickyHeaderView.frame.origin, size: size)
+
         stickyHeaderView.translatesAutoresizingMaskIntoConstraints = false
+//        stickyHeaderView.autoresizingMask = .None
+        print(stickyHeaderView.constraints)
+        view.removeConstraints(stickyHeaderView.constraints)
+        stickyHeaderView.layoutIfNeeded()
+        
 /*
         let leftConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         view.addConstraint(leftConstraint)
@@ -113,20 +120,16 @@ class MainViewController: UICollectionViewController {
  */
         view.addConstraints(Utilities.fullContainerConstraints(stickyHeaderView, withInset: 0, forDirection: .Horizontal))
 
-        let topConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 10)
+        let topConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0)
         view.addConstraint(topConstraint)
 
         heightConstraint = NSLayoutConstraint(item: stickyHeaderView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 200)
         view.addConstraint(heightConstraint)
 
-        updateOffsets()
-    }
-
-    func updateOffsets() {
-        var contentInset = collectionView!.contentInset
-        contentInset.top = heightConstraint.constant
-        collectionView?.contentInset = contentInset
-        collectionView?.scrollIndicatorInsets = contentInset
+//        updateOffsets()
+        var inset = collectionView!.contentInset
+        inset.top = heightConstraint.constant
+        collectionView?.contentInset = inset
     }
 
     // MARK: - DataCache Notification Functions
@@ -282,9 +285,7 @@ class MainViewController: UICollectionViewController {
 // MARK: - UIScrollViewDelegate Functions
 extension MainViewController {
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("Scroll View Offset: \(scrollView.contentOffset.y)")
-        heightConstraint.constant = scrollView.contentOffset.y < 0 ? -scrollView.contentOffset.y : 0
-        updateOffsets()
+        heightConstraint.constant = max(-collectionView!.contentOffset.y, 0)
     }
 }
 
